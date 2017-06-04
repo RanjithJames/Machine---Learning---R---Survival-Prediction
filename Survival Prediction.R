@@ -119,7 +119,8 @@ test$Fare <- ifelse(is.na(test$Fare), mean(test$Fare, na.rm = TRUE), test$Fare)
 
 ## Rerunning Prediction based on RF
 test$Survived <- predict(model.rf, newdata = test)
-
+## Writing the Prediction Output file
+write.table(test, file = "Pred_result.csv", col.names = TRUE, row.names = FALSE, sep = ",")
 ## Creating Submission Result to upload on Kaggle. Achieved a 80% accuracy. (Need to work on reaching 90%)
 submission <- test[,c("PassengerId", "Survived")]
 write.table(submission, file = "submission.csv", col.names = TRUE, row.names = FALSE, sep = ",")
